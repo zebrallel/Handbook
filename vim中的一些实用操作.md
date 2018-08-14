@@ -93,3 +93,52 @@ r :%s/  /private String /g<CR>:%s/\:.*/;/g<CR>ZZ 42
 ```
 qqsprivate String<Esc>f:c$;<Esc>j0q4@qZZ 32
 ```
+
+### 5b6f0fcba89379000c2328a4
+
+from
+```
+#Everyday routine... :\ 
+
+amazing_func("Some amazing text", 123, variable) # Kittens
+
+def func():
+        return 'Stuff for making movement harder'
+
+def func2(m):
+        v = 0
+        for i in range(10):
+                v += i*m
+                print(v, i, m)
+
+very_strange_func(42, foobar, 'Another text') # Dogs
+
+test = func()
+func2(len(test))
+```
+
+to
+```
+#Everyday routine... :\ 
+
+amazing_func(42, foobar, 'Another text') # Kittens
+
+def func():
+        return 'Stuff for making movement harder'
+
+def func2(m):
+        v = 0
+        for i in range(10):
+                v += i*m
+                print(v, i, m)
+
+very_strange_func("Some amazing text", 123, variable) # Dogs
+
+test = func()
+func2(len(test))
+```
+
+**method 1**
+```
+/(<CR>di(5nvi(p6NpZZ 17
+```
