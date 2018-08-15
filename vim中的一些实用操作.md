@@ -142,3 +142,11 @@ func2(len(test))
 ```
 /(<CR>di(5nvi(p6NpZZ 17
 ```
+**method 2**
+```
+?) <CR>dibnvibpnPZZ 16
+```
+**method 3**
+```
+/#<CR>dF(nhv;pNPZZ 15
+```
