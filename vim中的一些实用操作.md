@@ -150,3 +150,38 @@ func2(len(test))
 ```
 /#<CR>dF(nhv;pNPZZ 15
 ```
+
+### 5b6e21c9a893790006232531
+
+from
+```
+if(lang.equals("en_US")) {
+        System.out.println("The lang is en_US i.e english US"+
+}
+
+if(lang.equals("es_US")) {
+        System.out.println("The lang is es_US i.e spanish US"+
+}
+
+if(lang.equals("fr_US")) {
+        System.out.println("The lang is fr_US i.e france US"+
+}
+```
+to
+```
+if("en_US".equals(lang)) {
+        System.out.println("The lang is en_US i.e english US"+
+}
+
+if("es_US".equals(lang)) {
+        System.out.println("The lang is es_US i.e spanish US"+
+}
+
+if("fr_US".equals(lang)) {
+        System.out.println("The lang is fr_US i.e france US"+
+}
+```
+**method 1**
+```
+qqf(lde;vi(p0;p4+q2@qZZ 23
+```
