@@ -185,3 +185,36 @@ if("fr_US".equals(lang)) {
 ```
 qqf(lde;vi(p0;p4+q2@qZZ 23
 ```
+
+### 56fb2e75ccffcc0009026473
+
+from
+```
+- One number per line -
+-----------------------
+2,3,5,7,
+11,13,17,
+19,23,29,
+```
+to
+```
+2
+3
+5
+7
+11
+13
+17
+19
+23
+29
+```
+
+**method 1**
+```
+dj3JIwr<CR><Esc>u9@.wxZZ 17
+```
+**method 2**
+```
+dj3gJV"=[<C-R><C-A>]<CR>pZZ
+```
