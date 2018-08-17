@@ -29,3 +29,25 @@ Todos:
 
 * 拖拽是如何实现事件监听的
 * 组件发生重叠时，重新布局的算法实现方式（向左紧凑，向上紧凑）
+
+1. 组件拖动是由 React-Draggable 库实现的
+2. 组件缩放是由 Recct-Resizable 库实现的
+
+**offsetParent**
+
+offsetParent: 返回与当前元素最近的经过定位(position不等于static)的父级元素
+
+**offsetWidth**
+
+```
+offsetWidth =  border-left-width + padding-left + width + padding-right + border-right-width; 
+offsetHeight =  border-top-width + padding-top + height + padding-bottom + border-bottom-width
+```
+
+**offsetTop**
+
+offsetTop表示元素的上外边框至offsetParent元素的上内边框之间的像素距离
+
+**offsetLeft**
+
+offsetLeft表示元素的左外边框至offsetParent元素的左内边框质检的像素距离
