@@ -13,6 +13,19 @@ dj3gJV"=[<C-R><C-A>]<CR>pZZ
 
 Todos:
 
-* vim命令解析，并完善ppt
-* zatlas项目中的react-grid-layout替换
-* ppt中添加关于vscode和chrome中，vim插件支持内容，还有就是vundle
+* vim命令解析，并完善ppt Done
+* zatlas项目中的react-grid-layout替换 
+* ppt中添加关于vscode和chrome中，vim插件支持内容，还有就是vundle Done
+
+**react-grid-layout structure**
+
+- ReactGridLayout
+  - GridItem
+    - DraggableCore
+      - Resizeable
+        - DraggableCore
+
+**待确认**
+
+* 拖拽是如何实现事件监听的
+* 组件发生重叠时，重新布局的算法实现方式（向左紧凑，向上紧凑）
