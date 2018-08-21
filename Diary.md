@@ -5,7 +5,7 @@
   * 添加限高模式和不限高模式的切换
   * 添加手机屏幕的自适应
 
-# 2018-8-16 Thursday
+# 2019-8-16 Thursday
 
 ```
 dj3gJV"=[<C-R><C-A>]<CR>pZZ
@@ -51,3 +51,30 @@ offsetTop表示元素的上外边框至offsetParent元素的上内边框之间�
 **offsetLeft**
 
 offsetLeft表示元素的左外边框至offsetParent元素的左内边框质检的像素距离
+
+**需要实现的功能**
+
+1. 给ReactGridLayout层添加一个监听器，监听视窗宽度大小，当小于某一固定值时，将所有元素垂直排列
+2. 每个元素有个最小高度，优先保持元素的长宽比，若最终高度小于设定的最小高度，则使用最小高度为元素的高度
+3. 需要记录所有元素的原始位置，当宽度大于固定值，元素需要复原到原位
+4. 当页面进入垂直模式后，禁用所有元素的缩放监听器，只保留一个被选中的元素监听
+5. 被选中的元素用蓝框包裹
+
+# 2018-8-20 Monday
+
+### 本周工作
+
+* 完成移动端zatlas适配，初步做出demo
+
+# 2018-8-21 Tuesday
+
+charles 4.0.1版本遇到bug，无法解析资源。换成最新的4.2.6解决了问题。
+
+```
+premature EOF encountered
+```
+
+https://www.zzzmode.com/mytools/charles/
+
+charles 在线破解工具
+
