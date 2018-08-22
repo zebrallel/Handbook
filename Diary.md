@@ -78,3 +78,16 @@ https://www.zzzmode.com/mytools/charles/
 
 charles 在线破解工具
 
+# 2018-8-22
+
+1. iscroll滚动区域异常
+
+经排查发现是因为内容高度由接口返回，在componentDidUpdate中做处理后解决
+
+张大神在imooc的视频可以看一下
+ReactEvent mechanism
+
+2. iscroll将touchStart事件preventDefault掉了，导致在移动设备上面，原生的overflow：scroll元素，无法触发scroll
+
+解决办法：在外面添加一个判断，当我的组件是Table时，禁用iscroll中的touchStart，不是Table则放开。
+
