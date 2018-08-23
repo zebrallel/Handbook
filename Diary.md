@@ -91,3 +91,8 @@ ReactEvent mechanism
 
 解决办法：在外面添加一个判断，当我的组件是Table时，禁用iscroll中的touchStart，不是Table则放开。
 
+# 2018-8-23 Thursday
+
+1. React中的click方法在手机上失效
+
+周末研究一下fastclick和react的事件系统。。。心力憔悴
