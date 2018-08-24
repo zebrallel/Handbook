@@ -96,3 +96,12 @@ ReactEvent mechanism
 1. React中的click方法在手机上失效
 
 周末研究一下fastclick和react的事件系统。。。心力憔悴
+
+在移动端手指按下后，会依次触发：
+
+1. onTouchStart
+2. onTouchEnd
+3. onClick
+
+如果手指移动，则会触发onTouchMove，onClick不会触发
+如果在onTouchStart方法中调用了preventDefault，onClick事件不会触发
