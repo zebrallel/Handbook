@@ -105,3 +105,168 @@ ReactEvent mechanism
 
 如果手指移动，则会触发onTouchMove，onClick不会触发
 如果在onTouchStart方法中调用了preventDefault，onClick事件不会触发
+
+# 2018-8-27 Monday
+
+> 本周计划
+
+1. 优化移动端zatlas使用体验，周五发布一个新的版本
+
+> 今日计划
+
+1. 找颖华和先亮讨论移动端的优化方案
+2. 移动端浏览器卡顿问题分析
+
+> 触发创建layer的操作
+
+* 根元素
+* position：absolute/relative ，+z-index(不为auto）
+* display: flex|inline-flex +z-index(不为auto）
+* position: fixed
+* transform 不为 "none"
+* -webkit-overflow-scrolling：touch
+* opacity属性值小于 1 的元素
+* mix-blend-mode属性值不为 "normal"的元素
+* filter值不为“none”的元素
+* perspective值不为“none”的元素
+* isolation 属性被设置为 "isolate"的元素
+* will-change
+
+> rendering-repaint-reflow-relayout-restyle
+
+* parse html tags
+* parse css code, external, imported, inline and finally styles that are coded into **style** attributes of the HTML tags
+* constructing a render tree. The render tree is sort of like DOM tree but doesn't match it exactly. If we hide a div with **display:none;**, it won't be represented in the render tree.
+  * A DOM element might be represented with more than one node in the render tree.
+
+> take an example
+
+```html
+<html>
+<head>
+  <title>Beautiful page</title>
+</head>
+<body>
+  <p>
+    Once upon a time there was 
+    a looong paragraph...
+  </p>
+  
+  <div style="display: none">
+    Secret message
+  </div>
+  
+  <div><img src="..." /></div>
+  ...
+</body>
+</html>
+```
+
+DOM tree:
+
+```
+documentElement (html)
+    head
+        title
+    body
+        p
+            [text node]
+        
+        div 
+            [text node]
+        
+        div
+            img
+        
+        ...
+```
+
+render tree:
+
+```
+root (RenderView)
+    body
+        p
+            line 1
+        line 2
+        line 3
+        ...
+        
+    div
+        img
+        
+    ...
+```
+
+> Repaints and reflows
+
+* Parts of the render tree will need to be revalidated and the node dimensions recalculated. Ths is called a **reflow** (or layout, layouting, relayout).
+* Parts of the screen will need to be updated, either because of changes in geometric of a node or because of stylistic change, such as changing the background color. This screen updated is called a repaint, or a redraw.
+
+> What triggers a reflow or a repaint
+
+* Adding, removing, updating DOM nodes
+* Hiding a DOM node with **display:none** (replow and repaint) or **visibility: hidden** (repaint only, no geometry changes)
+* Moving, animating a DOM node on the page
+* Adding a stylesheet, tweaking style properties
+* User action such as resizing the window, changing the font size, or scrolling
+
+```js
+var bstyle = document.body.style; // cache
+ 
+bstyle.padding = "20px"; // reflow, repaint
+bstyle.border = "10px solid red"; // another reflow and a repaint
+ 
+bstyle.color = "blue"; // repaint only, no dimensions changed
+bstyle.backgroundColor = "#fad"; // repaint
+ 
+bstyle.fontSize = "2em"; // reflow, repaint
+ 
+// new DOM element - reflow, repaint
+document.body.appendChild(document.createTextNode('dude!'));
+```
+
+> 浏览器是聪明的
+
+Reflow和repaint是一个开销比较大的操作，如果你的改动影响范围只是最深层次的节点倒还好，如果是顶层节点，那么整个render tree都要受到影响。所以浏览器会将一定数量的reflow/repaint操作batch起来，在某一特定的时间统一执行，以提高效率。
+但是有一些操作会阻止浏览器的这些优化，比如当我们用js去读取一个节点的样式信息：
+
+* offsetTop, offsetLeft, offsetWidth, offsetHeight
+* scrollTop /left/width/height
+* cliehtTop /left/width/height
+* getComputedStyle(), or currentStyle in IE
+
+为了实时获取这些信息，一旦页面发生变化浏览器必须立即relfow，无法进行batch优化。举个栗子：
+
+```js
+el.style.left = el.offsetLeft + 10 + 'px'
+```
+
+每次去读取offsetLeft并修改元素的left属性，这并不是一个好主意
+
+```
+// bad
+var left = 10,
+    top = 10;
+el.style.left = left + "px";
+el.style.top  = top  + "px";
+ 
+// better 
+el.className += " theclassname";
+ 
+// or when top and left are calculated dynamically...
+ 
+// better
+el.style.cssText += "; left: " + left + "px; top: " + top + "px;";
+```
+
+> 为了手动实现批量操作，我们可以这样：
+
+* 用一个docuemntFragment来保存所有临时的操作
+* 克隆你想要操作的节点，对克隆的节点进行操作，再更新回去
+* 将你要操作的节点display：none，然后对其进行操作，最后回复其显示
+
+
+> 一个完整的流程大概是这样：
+
+dom --> style --> layout --> paint --> raster --> gpu --> visible stuff in memory
