@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Day2</title>
+    <style>
+        body,html{
+            overflow: hidden;
+        }
+        .header{
+            line-height: 50px;
+            background: #abc;
+            text-align: center;
+        }
+        .aside{
+            float: left;
+            height: 500px;
+            background: #f30;
+        }
+        .article{
+            background: green;
+            height: 500px;
+        }
+        .footer{
+            line-height: 50px;
+            background: blue;
+        }
+        .box{
+            border: #333 solid 1px;
+            background: #888;
+            overflow: hidden;
+        }
+
+        .left{
+            float: left;
+            background: yellow;
+        }
+
+        .right{
+            float: right;
+        }
+
+        .flexbox{
+            display: flex;
+        }
+
+        .f-left{
+            background: red;
+            width: 100px;
+            height: 200px;
+        }
+
+        .f-middle{
+            height: 200px;
+            flex: 1;
+            background: pink;
+        }
+
+        .f-right{
+            flex: 1;
+            background: brown;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">header</header>
+    <aside class="aside">aside</aside>
+    <article class="article">article</article>
+    <footer class="footer">footer</footer>
+    <div class="box">
+        <div class="left">left</div>
+        <div class="right">right</div>
+    </div>
+    <div class="flexbox">
+        <div class="f-left">左边</div>
+        <div class="f-middle">中中间中间中间中间中间中间中间中间中间间</div>
+        <div class="f-right">右边</div>
+    </div>
+</body>
+</html>
