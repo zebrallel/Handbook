@@ -10,3 +10,5 @@
 总体来看以上几个切入点就可以满足入门的要求，至于swift语法方面更是没啥大问题，语法糖换个做法罢了。一篇还比较不错的入门文章：
 
 * https://www.appcoda.com.tw/hello-world-app-swift/
+* https://www.bilibili.com/video/av91699411?from=search&seid=1507960800910158834
+
