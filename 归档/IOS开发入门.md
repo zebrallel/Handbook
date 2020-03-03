@@ -1,5 +1,3 @@
-今天是2.26日，突然心血来潮想学一下ios开发。正好也是2020年的规划之一了，作为接下来几乎是全职的Flutter开发，了解一定的ios背景是相当有必要的。当然作为一名工作多年的老兵，学习了各种框架语言之后能够发现，各路框架的开发模式都大同小异，我们先整理一下个人理解的切入点：
-
 * xcode操作界面
   * 因为和前端界vscode一统江湖不太一样，ios开发还是有自己的ide的，这个ide功能还是比较复杂，需要花点时间去了解其基本用法才行。
 * ios app生命周期
@@ -12,3 +10,7 @@
 * https://www.appcoda.com.tw/hello-world-app-swift/
 * https://www.bilibili.com/video/av91699411?from=search&seid=1507960800910158834
 
+开发方式
+
+* storyboard：通过图形界面操作生成app，适用于简单且不需要维护的app
+* 编码生成UI
